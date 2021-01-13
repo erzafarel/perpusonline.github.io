@@ -3,7 +3,7 @@ import calendar
 from django.db import models
 from django.utils import timezone
 
-YEAR_CHOICES = [(r, r) for r in range(1900, datetime.date.today().year+1)]
+YEAR_CHOICES = [(r, r) for r in range(1800, datetime.date.today().year+1)]
 
 # Create your models here.
 
@@ -38,15 +38,15 @@ class Kategori(models.Model):
         return self.kategori
 
 class Buku(models.Model):
-    judul = models.CharField(max_length=50)
-    kategori_id = models.ForeignKey(
+    judul           = models.CharField(max_length=50)
+    kategori_id     = models.ForeignKey(
         Kategori, on_delete=models.CASCADE, null=True)
-    pengarang_id = models.ForeignKey(
+    pengarang_id    = models.ForeignKey(
         pengarang, on_delete=models.CASCADE, null=True)
-    penerbit_id = models.ForeignKey(
+    penerbit_id     = models.ForeignKey(
         penerbit, on_delete=models.CASCADE, null=True)
-    Tahun = models.CharField(choices=YEAR_CHOICES, max_length=5)
-    ISBN  = models.IntegerField(null=True)
+    Tahun           = models.CharField(choices=YEAR_CHOICES, max_length=5)
+    ISBN            = models.IntegerField(null=True)
 
     def __str__(self):
         return self.judul

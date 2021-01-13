@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from perpustakaan.models import *
 from perpustakaan.forms import *
 
@@ -22,19 +22,28 @@ def buku(request):
 
 def tambah_buku(request):
     if request.POST:
-        form = FormBuku(request.POST)
+        form = FormBuku(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
             form = FormBuku()
-
+            pesan = "data Tersimpan"
             konteks = {
                 'form': form,
+                'pesan': pesan,
+            }
+            return render(request, 'tambah-buku.html', konteks)
+        else:
+            form = FormBuku()
+            pesan = form.errors
+            konteks = {
+                'form': form,
+                'pesan': pesan,
             }
             return render(request, 'tambah-buku.html', konteks)
     
     else:
         form = FormBuku()
-        
+
         konteks = {
             'form': form,
         }
@@ -43,4 +52,4 @@ def tambah_buku(request):
 
 def edit_buku(request):
 
-    return render(request, 'edit_buku.html')
+    return render(request, 'edit_buku.html', konteks)
