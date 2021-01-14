@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from perpustakaan.models import *
 from perpustakaan.forms import *
 
@@ -9,6 +9,36 @@ def base(request):
         'judul': 'Perpustakaan Online',
     }
     return render(request, 'base.html', konteks)
+
+def pengarang(request):
+    user = pengarang.objects.all()
+
+    konteks = {
+        'pengarang': user,
+    }
+
+    return render(request, 'pengarang.html', konteks)
+
+def tambah_pengarang(request):
+    if request.POST:
+        form = FormPengarang(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormPengarang()
+            pesan = "data tersimpan"
+            konteks = {
+                'form': form,
+                'pesan': pesan,
+            }
+            return render(request, 'tambah-pengarang.html', konteks)
+    else:
+        form = FormPengarang
+
+        konteks = {
+            'form' : form,
+        }
+    
+    return render(request, 'tambah-pengarang.html', konteks)
 
 def buku(request):
     books = Buku.objects.all()
@@ -22,7 +52,7 @@ def buku(request):
 
 def tambah_buku(request):
     if request.POST:
-        form = FormBuku(request.POST or None, request.FILES or None)
+        form = FormBuku(request.POST)
         if form.is_valid():
             form.save()
             form = FormBuku()
@@ -53,3 +83,12 @@ def tambah_buku(request):
 def edit_buku(request):
 
     return render(request, 'edit_buku.html', konteks)
+
+def waktu(request):
+    waktu = waktu.objects.all()
+
+    konteks = {
+        'time': waktu,
+    }
+
+    return render(request, 'waktu.html', konteks)

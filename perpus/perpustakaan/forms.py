@@ -15,3 +15,12 @@ class FormBuku(ModelForm):
             'Tahun' : forms.Select({'class':'form-control'}),
             'ISBN' : forms.NumberInput({'class':'form-control'}),
         }
+
+class FormPengarang(ModelForm):
+    class Meta:
+        models = pengarang
+        fields = '__all__'
+
+        widgets = {
+            'nama' : forms.TextInput({'class':'form-control'}),
+        }

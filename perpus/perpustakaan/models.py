@@ -25,6 +25,7 @@ class Anggota(Identitas):
         return self.nama
 
 class pengarang(Identitas):
+    
     def __str__(self):
         return self.nama
 

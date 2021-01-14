@@ -20,6 +20,8 @@ from perpustakaan.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', base),
+    path('pengarang/', pengarang),
+    path('tambah-pengarang/', tambah_pengarang),
     path('buku/', buku),
     path('tambah-buku/', tambah_buku),
     path('edit-buku/', edit_buku),
