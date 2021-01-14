@@ -7,29 +7,31 @@ YEAR_CHOICES = [(r, r) for r in range(1800, datetime.date.today().year+1)]
 
 # Create your models here.
 
-
-class Identitas (models.Model):
-    nama = models.CharField(max_length=50)
-    class meta:
-        abstract = True
-
 class status (models.Model):
     status = models.CharField(max_length=30)
     def __str__(self):
         return self.status
 
-class Anggota(Identitas):
+class Anggota(models.Model):
+    nama = models.CharField(max_lenght=50)
     status_id = models.ForeignKey(
         status, on_delete=models.CASCADE, null=True)
+    alamat = models.CharField(max_lenght=200)
+    telp = models.integerField(max_lenght=15, null=True)
     def __str__(self):
         return self.nama
 
-class pengarang(Identitas):
-    
+class pengarang(models.Model):
+    nama = models.CharField(max_lenght=50)
+    alamat = models.CharField(max_lenght=200)
+    telp = models.integerField(max_lenght=15, null=True)
     def __str__(self):
         return self.nama
 
-class penerbit (Identitas):
+class penerbit (models.Model):
+    nama = models.CharField(max_lenght=50)
+    alamat = models.CharField(max_lenght=200)
+    telp = models.integerField(max_lenght=15, null=True)
     def __str__(self):
         return self.nama
 
@@ -46,7 +48,7 @@ class Buku(models.Model):
         pengarang, on_delete=models.CASCADE, null=True)
     penerbit_id     = models.ForeignKey(
         penerbit, on_delete=models.CASCADE, null=True)
-    Tahun           = models.CharField(choices=YEAR_CHOICES, max_length=5)
+    tahun           = models.CharField(choices=YEAR_CHOICES, max_length=5)
     ISBN            = models.IntegerField(null=True)
 
     def __str__(self):
@@ -59,12 +61,12 @@ class waktu(models.Model):
     
 
 class peminjaman(models.Model):
-    waktu_id = models.ForeignKey(
-        waktu, on_delete=models.CASCADE, null=True)
     anggota_id = models.ForeignKey(
         Anggota, on_delete=models.CASCADE, null=True)
     buku_id = models.ForeignKey(
         Buku, on_delete=models.CASCADE, null=True)
+    tglpinjam = models.DateField.auto_now()
+    tglkembali = models.DateField()
     jumlahpinjaman = models.IntegerField(null=True)
     def __str__(self):
-        return self.jumlahpinjaman 
+        return self.id 

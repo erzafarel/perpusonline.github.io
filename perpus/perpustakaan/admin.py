@@ -15,7 +15,6 @@ class AnggotaData(admin.ModelAdmin):
     search_fields = ['nama', 'status_id']
     list_per_page = 5
 
-admin.site.register(Identitas)
 admin.site.register(Kategori)
 admin.site.register(status)
 admin.site.register(Anggota, AnggotaData)
