@@ -18,7 +18,7 @@ class anggota (models.Model):
         status, on_delete=models.CASCADE, null=True
     )
     alamat = models.CharField(max_length=200)
-    telp = models.IntegerField(max_length=15, null=True)
+    telp = models.IntegerField(null=True)
 
     def __str__(self):
         return self.nama
@@ -26,7 +26,7 @@ class anggota (models.Model):
 class pengarang(models.Model):
     nama = models.CharField(max_length=50)
     alamat = models.CharField(max_length=200)
-    telp = models.IntegerField(max_length=15, null=True)
+    telp = models.IntegerField(null=True)
 
     def __str__(self):
         return self.nama
@@ -34,7 +34,7 @@ class pengarang(models.Model):
 class penerbit(models.Model):
     nama = models.CharField(max_length=50)
     alamat = models.CharField(max_length=200)
-    telp = models.IntegerField(max_length=15, null=True)
+    telp = models.IntegerField(null=True)
 
     def __str__(self):
         return self.nama

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from perpustakaan.models import *
 from perpustakaan.forms import *
 
@@ -9,6 +9,25 @@ def base(request):
         'judul': 'Perpustakaan Online',
     }
     return render(request, 'base.html', konteks)
+
+def tambah_status(request):
+    if request.POST:
+        form = FormStatus(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormStatus()
+            konteks = {
+                'form': form,
+            }
+            return redirect('/tambah-status/', konteks)
+    else:
+        form = FormStatus
+
+        konteks = {
+            'form' : form,
+        }
+    
+    return render(request, 'tambah_status.html', konteks)
 
 def pengarang(request):
     user = pengarang.objects.all()
@@ -25,12 +44,10 @@ def tambah_pengarang(request):
         if form.is_valid():
             form.save()
             form = FormPengarang()
-            pesan = "data tersimpan"
             konteks = {
                 'form': form,
-                'pesan': pesan,
             }
-            return render(request, 'tambah-pengarang.html', konteks)
+            return redirect('/')
     else:
         form = FormPengarang
 
@@ -38,7 +55,11 @@ def tambah_pengarang(request):
             'form' : form,
         }
     
-    return render(request, 'tambah-pengarang.html', konteks)
+    return redirect('/')
+
+def edit_pengarang(request):
+
+    return render(request, 'edit_pengarang.html', konteks)
 
 def buku(request):
     books = Buku.objects.all()
@@ -56,21 +77,10 @@ def tambah_buku(request):
         if form.is_valid():
             form.save()
             form = FormBuku()
-            pesan = "data Tersimpan"
             konteks = {
                 'form': form,
-                'pesan': pesan,
             }
-            return render(request, 'tambah-buku.html', konteks)
-        else:
-            form = FormBuku()
-            pesan = form.errors
-            konteks = {
-                'form': form,
-                'pesan': pesan,
-            }
-            return render(request, 'tambah-buku.html', konteks)
-    
+            return render(request, 'tambah-buku.html', konteks)    
     else:
         form = FormBuku()
 
@@ -83,12 +93,3 @@ def tambah_buku(request):
 def edit_buku(request):
 
     return render(request, 'edit_buku.html', konteks)
-
-def waktu(request):
-    waktu = waktu.objects.all()
-
-    konteks = {
-        'time': waktu,
-    }
-
-    return render(request, 'waktu.html', konteks)

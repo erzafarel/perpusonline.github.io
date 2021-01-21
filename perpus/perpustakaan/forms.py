@@ -12,9 +12,19 @@ class FormBuku(ModelForm):
             'kategori_id' : forms.Select({'class':'form-control'}),
             'pengarang_id' : forms.Select({'class':'form-control'}),
             'penerbit_id' : forms.Select({'class':'form-control'}),
-            'Tahun' : forms.Select({'class':'form-control'}),
+            'tahun' : forms.Select({'class':'form-control'}),
             'ISBN' : forms.NumberInput({'class':'form-control'}),
         }
+
+class FormStatus(ModelForm):
+    class Meta:
+        model = status
+        fields = '__all__'
+
+        widgets = {
+            'status' : forms.TextInput({'class':'form-control'}),
+        }
+
 
 class FormPengarang(ModelForm):
     class Meta:
