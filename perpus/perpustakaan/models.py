@@ -57,11 +57,6 @@ class Buku(models.Model):
 
     def __str__(self):
         return self.judul
-
-class waktu(models.Model):
-    date = models.DateField()
-    def __date__(self):
-        return self.date 
     
 
 class peminjaman(models.Model):
