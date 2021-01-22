@@ -14,11 +14,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%for pengarang in pencipta %}
+                        {%for penerbit in publisher%}
                         <tr>
-                            <td>{{ pengarang.nama }}</td>
-                            <td>{{ pengarang.alamat }}</td>
-                            <td>{{ pengarang.telp }}</td>
+                            <td>{{ penerbit.nama }}</td>
+                            <td>{{ penerbit.alamat }}</td>
+                            <td>{{ penerbit.telp }}</td>
                             <td>
                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

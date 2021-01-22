@@ -24,6 +24,18 @@ class FormStatus(ModelForm):
         widgets = {
             'status' : forms.TextInput({'class':'form-control'}),
         }
+    
+class FormAnggota(ModelForm):
+    class Meta:
+        model = anggota
+        fields = '__all__'
+
+        widgets = {
+            'nama' : forms.TextInput({'class':'form-control'}),
+            'status_id' : forms.Select({'class':'form-control'}),
+            'alamat' : forms.TextInput({'class':'form-control'}),
+            'telp' : forms.NumberInput({'class':'form-control'}),
+        }
 
 
 class FormPengarang(ModelForm):
@@ -33,4 +45,17 @@ class FormPengarang(ModelForm):
 
         widgets = {
             'nama' : forms.TextInput({'class':'form-control'}),
+            'alamat' : forms.TextInput({'class':'form-control'}),
+            'telp' : forms.NumberInput({'class':'form-control'}),
+        }
+
+class FormPenerbit(ModelForm):
+    class Meta:
+        model = penerbit
+        fields = '__all__'
+
+        widgets = {
+            'nama' : forms.TextInput({'class':'form-control'}),
+            'alamat' : forms.TextInput({'class':'form-control'}),
+            'telp' : forms.NumberInput({'class':'form-control'}),
         }

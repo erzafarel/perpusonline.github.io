@@ -10,6 +10,17 @@ def base(request):
     }
     return render(request, 'base.html', konteks)
 
+# --------------------------------- Table Status --------------------------------------
+
+def status_anggota(request):
+    statuss = status.objects.all()
+
+    konteks = {
+        'position': statuss,
+    }
+
+    return render(request, 'status.html', konteks)
+
 def tambah_status(request):
     if request.POST:
         form = FormStatus(request.POST)
@@ -29,11 +40,43 @@ def tambah_status(request):
     
     return render(request, 'tambah_status.html', konteks)
 
-def pengarang(request):
-    user = pengarang.objects.all()
+# --------------------------------- Table Anggota --------------------------------------
+
+def data_anggota(request):
+    member = anggota.objects.all()
 
     konteks = {
-        'pengarang': user,
+        'member': member,
+    }
+
+    return render(request, 'anggota.html', konteks)
+
+def tambah_anggota(request):
+    if request.POST:
+        form = FormAnggota(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormAnggota()
+            konteks = {
+                'form': form,
+            }
+            return redirect('/tambah-anggota/', konteks)
+    else:
+        form = FormAnggota
+
+        konteks = {
+            'form' : form,
+        }
+    
+    return render(request, 'tambah_anggota.html', konteks)
+
+# -------------------------------- Table Pengarang --------------------------------------
+
+def data_pengarang(request):
+    cipta = pengarang.objects.all()
+
+    konteks = {
+        'pencipta': cipta,
     }
 
     return render(request, 'pengarang.html', konteks)
@@ -47,7 +90,7 @@ def tambah_pengarang(request):
             konteks = {
                 'form': form,
             }
-            return redirect('/')
+            return redirect('/tambah-pengarang/', konteks)
     else:
         form = FormPengarang
 
@@ -55,11 +98,44 @@ def tambah_pengarang(request):
             'form' : form,
         }
     
-    return redirect('/')
+    return render(request, 'tambah_pengarang.html', konteks)
 
 def edit_pengarang(request):
 
     return render(request, 'edit_pengarang.html', konteks)
+
+# ------------------------------- Table Penerbit --------------------------------------
+
+def data_penerbit(request):
+    publisher = penerbit.objects.all()
+
+    konteks = {
+        'publisher': publisher,
+    }
+
+    return render(request, 'penerbit.html', konteks)
+
+def tambah_penerbit(request):
+    if request.POST:
+        form = FormPenerbit(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FormPenerbit()
+            konteks = {
+                'form': form,
+            }
+            return redirect('/tambah-penerbit/', konteks)
+    else:
+        form = FormPenerbit
+
+        konteks = {
+            'form' : form,
+        }
+    
+    return render(request, 'tambah_penerbit.html', konteks)
+
+
+# ----------------------------------- Table Buku --------------------------------------
 
 def buku(request):
     books = Buku.objects.all()

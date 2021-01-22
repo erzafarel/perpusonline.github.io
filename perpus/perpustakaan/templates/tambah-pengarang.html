@@ -5,22 +5,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <form action="/tambah-pengarang/" method="post">
-                {% if pesan %}
-                    <div class="alert alert-danger"> {{ pesan }}</div>
-                {% endif %}
-                {% csrf_token %}
 
-                {{ form.as_p }}
+            <div class="card">
+                <h5 class="card-header">Tambah Data Anggota</h5>
+                <div class="card-body">
+                    <form action="/tambah-pengarang/" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+        
+                        <tombol class="float-md-right">
+                            <a href="/pengarang/" class="btn btn-success">View Data</a>
+                            <button class="btn btn-primary">Tambah Data</button>
+                        </tombol>
+                    </form>
+                </div>
+              </div>
 
-                <button class="btn btn-primary">Tambah Pengarang</button>
-            </form>
         </div>
     </div>
 </div>
-
-
-
 
 </form>
 

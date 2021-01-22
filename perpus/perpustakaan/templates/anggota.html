@@ -8,17 +8,19 @@
                     <thead>
                         <tr>
                             <th> NAMA </th>
+                            <th> STATUS </th>
                             <th> ALAMAT </th>
                             <th> TELP </th>
                             <th> ACTION </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {%for pengarang in pencipta %}
+                        {%for anggota in member%}
                         <tr>
-                            <td>{{ pengarang.nama }}</td>
-                            <td>{{ pengarang.alamat }}</td>
-                            <td>{{ pengarang.telp }}</td>
+                            <td>{{ anggota.nama }}</td>
+                            <td>{{ anggota.status_id }}</td>
+                            <td>{{ anggota.alamat }}</td>
+                            <td>{{ anggota.telp }}</td>
                             <td>
                                 <a href="#" class="btn btn-outline-primary btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
