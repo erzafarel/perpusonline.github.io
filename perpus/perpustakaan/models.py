@@ -7,10 +7,13 @@ YEAR_CHOICES = [(r, r) for r in range(1800, datetime.date.today().year+1)]
 
 # Create your models here.
 
+
 class status (models.Model):
     status = models.CharField(max_length=30)
+
     def __str__(self):
         return self.status
+
 
 class anggota (models.Model):
     nama = models.CharField(max_length=50)
@@ -23,6 +26,7 @@ class anggota (models.Model):
     def __str__(self):
         return self.nama
 
+
 class pengarang(models.Model):
     nama = models.CharField(max_length=50)
     alamat = models.CharField(max_length=200)
@@ -30,6 +34,7 @@ class pengarang(models.Model):
 
     def __str__(self):
         return self.nama
+
 
 class penerbit(models.Model):
     nama = models.CharField(max_length=50)
@@ -39,25 +44,28 @@ class penerbit(models.Model):
     def __str__(self):
         return self.nama
 
+
 class Kategori(models.Model):
     kategori = models.CharField(max_length=30)
+
     def __str__(self):
         return self.kategori
 
+
 class Buku(models.Model):
-    judul           = models.CharField(max_length=50)
-    kategori_id     = models.ForeignKey(
+    judul = models.CharField(max_length=50)
+    kategori_id = models.ForeignKey(
         Kategori, on_delete=models.CASCADE, null=True)
-    pengarang_id    = models.ForeignKey(
+    pengarang_id = models.ForeignKey(
         pengarang, on_delete=models.CASCADE, null=True)
-    penerbit_id     = models.ForeignKey(
+    penerbit_id = models.ForeignKey(
         penerbit, on_delete=models.CASCADE, null=True)
-    tahun           = models.CharField(choices=YEAR_CHOICES, max_length=5)
-    ISBN            = models.IntegerField(null=True)
+    tahun = models.CharField(choices=YEAR_CHOICES, max_length=5)
+    ISBN = models.IntegerField(null=True)
 
     def __str__(self):
         return self.judul
-    
+
 
 class peminjaman(models.Model):
     kodepeminjaman = models.CharField(max_length=10, primary_key=True)
@@ -68,5 +76,6 @@ class peminjaman(models.Model):
     tglpinjam = models.DateField()
     tglkembali = models.DateField()
     jumlahpinjaman = models.IntegerField(null=True)
+
     def __str__(self):
         return self. kodepeminjaman

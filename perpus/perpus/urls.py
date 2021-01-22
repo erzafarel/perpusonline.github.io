@@ -31,7 +31,7 @@ urlpatterns = [
     path('tambah-pengarang/', tambah_pengarang),
     path('edit-pengarang/', edit_pengarang),
 
-    path('penerbit/', penerbit),
+    path('penerbit/', data_penerbit),
     path('tambah-penerbit/', tambah_penerbit),
 
     path('buku/', buku),

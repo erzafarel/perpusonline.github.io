@@ -4,6 +4,7 @@ from perpustakaan.forms import *
 
 # Create your views here.
 
+
 def base(request):
     konteks = {
         'judul': 'Perpustakaan Online',
@@ -11,6 +12,7 @@ def base(request):
     return render(request, 'base.html', konteks)
 
 # --------------------------------- Table Status --------------------------------------
+
 
 def status_anggota(request):
     statuss = status.objects.all()
@@ -20,6 +22,7 @@ def status_anggota(request):
     }
 
     return render(request, 'status.html', konteks)
+
 
 def tambah_status(request):
     if request.POST:
@@ -35,12 +38,13 @@ def tambah_status(request):
         form = FormStatus
 
         konteks = {
-            'form' : form,
+            'form': form,
         }
-    
+
     return render(request, 'tambah_status.html', konteks)
 
 # --------------------------------- Table Anggota --------------------------------------
+
 
 def data_anggota(request):
     member = anggota.objects.all()
@@ -50,6 +54,7 @@ def data_anggota(request):
     }
 
     return render(request, 'anggota.html', konteks)
+
 
 def tambah_anggota(request):
     if request.POST:
@@ -65,21 +70,23 @@ def tambah_anggota(request):
         form = FormAnggota
 
         konteks = {
-            'form' : form,
+            'form': form,
         }
-    
+
     return render(request, 'tambah_anggota.html', konteks)
 
 # -------------------------------- Table Pengarang --------------------------------------
+
 
 def data_pengarang(request):
     cipta = pengarang.objects.all()
 
     konteks = {
-        'pencipta': cipta,
+        'cipta': cipta,
     }
 
     return render(request, 'pengarang.html', konteks)
+
 
 def tambah_pengarang(request):
     if request.POST:
@@ -95,10 +102,11 @@ def tambah_pengarang(request):
         form = FormPengarang
 
         konteks = {
-            'form' : form,
+            'form': form,
         }
-    
+
     return render(request, 'tambah_pengarang.html', konteks)
+
 
 def edit_pengarang(request):
 
@@ -106,14 +114,16 @@ def edit_pengarang(request):
 
 # ------------------------------- Table Penerbit --------------------------------------
 
+
 def data_penerbit(request):
-    publisher = penerbit.objects.all()
+    cetaks = penerbit.objects.all()
 
     konteks = {
-        'publisher': publisher,
+        'cetak': cetaks,
     }
 
     return render(request, 'penerbit.html', konteks)
+
 
 def tambah_penerbit(request):
     if request.POST:
@@ -129,9 +139,9 @@ def tambah_penerbit(request):
         form = FormPenerbit
 
         konteks = {
-            'form' : form,
+            'form': form,
         }
-    
+
     return render(request, 'tambah_penerbit.html', konteks)
 
 
@@ -156,15 +166,16 @@ def tambah_buku(request):
             konteks = {
                 'form': form,
             }
-            return render(request, 'tambah-buku.html', konteks)    
+            return render(request, 'tambah-buku.html', konteks)
     else:
         form = FormBuku()
 
         konteks = {
             'form': form,
         }
-    
+
     return render(request, 'tambah-buku.html', konteks)
+
 
 def edit_buku(request):
 
