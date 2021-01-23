@@ -43,20 +43,29 @@ def tambah_status(request):
 
     return render(request, 'tambah_status.html', konteks)
 
+
 def ubah_status(request, id_status):
     statuss = status.objects.get(id=id_status)
-    if request.post:
-        form = FormStatus(request.post, instance=statuss)
+    template = 'ubah_status.html'
+    if request.POST:
+        form = FormStatus(request.POST, instance=statuss)
         if form.is_valid():
             form.save()
-            return redirect('/ubah-status/', id_status)
+            return redirect('ubah-status/', id_status=id_status)
     else:
         form = FormStatus(instance=statuss)
         konteks = {
-            'form' : form,
-            'statuss' : statuss,
+            'form': form,
+            'statuss': statuss,
         }
-    return render(request, 'ubah_status.html', konteks)
+    return render(request, template, konteks)
+
+
+def hapus_status(request, id_status):
+    statuss = status.objects.filter(id=id_status)
+    statuss.delete()
+    #messeges.success(request, "Data berhasil dihapus !")
+    return redirect('/status/')
 
 # --------------------------------- Table Anggota --------------------------------------
 

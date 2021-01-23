@@ -10,7 +10,7 @@
                     <div class="card">
                         <h5 class="card-header">Ubah Data Status</h5>
                         <div class="card-body">
-                            <form action="{% url 'ubah_status'%}" method="post">
+                            <form action="{% url 'ubah-status/' statuss.id %}" method="post">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                 
