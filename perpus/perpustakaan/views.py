@@ -64,7 +64,6 @@ def ubah_status(request, id_status):
 def hapus_status(request, id_status):
     statuss = status.objects.filter(id=id_status)
     statuss.delete()
-    #messeges.success(request, "Data berhasil dihapus !")
     return redirect('/status/')
 
 # --------------------------------- Table Anggota --------------------------------------
