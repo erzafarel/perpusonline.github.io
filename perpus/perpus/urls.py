@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('status/', status_anggota),
     path('tambah-status/', tambah_status),
+    path('status/ubah/<int:id_status>', ubah_status, name='ubah-status/'),
 
     path('anggota/', data_anggota),
     path('tambah-anggota/', tambah_anggota),

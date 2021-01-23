@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from perpustakaan.models import *
 from perpustakaan.forms import *
 
+
 # Create your views here.
 
 
@@ -16,7 +17,6 @@ def base(request):
 
 def status_anggota(request):
     statuss = status.objects.all()
-
     konteks = {
         'position': statuss,
     }
@@ -42,6 +42,21 @@ def tambah_status(request):
         }
 
     return render(request, 'tambah_status.html', konteks)
+
+def ubah_status(request, id_status):
+    statuss = status.objects.get(id=id_status)
+    if request.post:
+        form = FormStatus(request.post, instance=statuss)
+        if form.is_valid():
+            form.save()
+            return redirect('/ubah-status/', id_status)
+    else:
+        form = FormStatus(instance=statuss)
+        konteks = {
+            'form' : form,
+            'statuss' : statuss,
+        }
+    return render(request, 'ubah_status.html', konteks)
 
 # --------------------------------- Table Anggota --------------------------------------
 
@@ -74,6 +89,7 @@ def tambah_anggota(request):
         }
 
     return render(request, 'tambah_anggota.html', konteks)
+
 
 # -------------------------------- Table Pengarang --------------------------------------
 

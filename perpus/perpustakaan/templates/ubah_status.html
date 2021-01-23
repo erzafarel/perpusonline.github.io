@@ -8,15 +8,15 @@
             <div class="row">
                 <div class="col-md-4 p-1">
                     <div class="card">
-                        <h5 class="card-header">Tambah Data Status</h5>
+                        <h5 class="card-header">Ubah Data Status</h5>
                         <div class="card-body">
-                            <form action="/tambah-status/" method="post">
+                            <form action="{% url 'ubah_status'%}" method="post">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                 
                                 <tombol class="float-md-right">
                                     <a href="/status/" class="btn btn-success btn-md">View Data</a>
-                                    <button class="btn btn-primary btn-md">Tambah Data</button>
+                                    <button class="btn btn-primary btn-md">Update Data</button>
                                 </tombol>
                             </form>
                         </div>
